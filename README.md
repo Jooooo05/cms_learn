@@ -1,8 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 📘 CMS - Next.js + Tailwind + Motion
 
-## Getting Started
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).  
+It uses the **Pages Router**, styled with **Tailwind CSS**, animated using **Motion**, and enhanced with **SweetAlert2**.
 
-First, run the development server:
+---
+
+## 🚀 Getting Started
+
+### 1. Run the development server
 
 ```bash
 npm run dev
@@ -12,29 +17,76 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open your browser and go to:
+👉 http://localhost:3000
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+2. Start editing
+You can start editing the homepage by modifying:
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+pages/index.tsx
+The page auto-updates as you edit the file.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+🧱 Project Structure
+pages/ – Application routes
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+pages/api/ – API endpoints (e.g., /api/hello)
 
-## Learn More
+components/ – Reusable components
 
-To learn more about Next.js, take a look at the following resources:
+public/ – Static files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+styles/ – Tailwind & global styles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+tailwind.config.ts – Tailwind configuration
 
-## Deploy on Vercel
+tsconfig.json – TypeScript config
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+📦 Tech Stack
+Technology	Description
+Next.js	React framework with file-based routing
+React 19	UI library for building interfaces
+Tailwind	Utility-first CSS for rapid styling
+Motion	Powerful animation library
+SweetAlert2	Elegant alert/confirmation modals
+TypeScript	Static type checking for JavaScript
+
+⚙️ Available Scripts
+In the project directory, you can run:
+npm run dev     # Start the development server
+npm run build   # Build the project for production
+npm run start   # Start the production server
+npm run lint    # Lint the code using ESLint
+
+
+
+✨ Features
+⚡ Fast development with Hot Module Replacement
+
+🎨 TailwindCSS for responsive and consistent design
+
+🧼 ESLint integration for clean code
+
+💫 Page transitions and UI animations using Motion
+
+🔔 Alert modals with SweetAlert2
+
+
+📚 Learn More
+To dive deeper into the tools used:
+
+Next.js Documentation
+
+Learn Next.js
+
+Tailwind CSS Docs
+
+Motion Documentation
+
+SweetAlert2 Docs
+
+☁️ Deploy on Vercel
+The easiest way to deploy your Next.js app is via Vercel, the creators of Next.js.
+
+Need help? Check out the Next.js Deployment Docs.
