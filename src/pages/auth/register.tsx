@@ -5,31 +5,58 @@ import type React from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState } from "react"
+import Swal from "sweetalert2"
+import { useRouter } from "next/navigation"
+import { s } from "motion/react-client"
+
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   })
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle registration logic here
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match")
-      return
-    }
     console.log("Registration attempt:", formData)
+    try {
+      const res = await fetch("http://localhost:3001/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        Swal.fire({
+          title: "Login succesfully!",
+          text: "Your account succesfully login!",
+          icon: "success",
+          timer: 1500
+        });
+        
+        router.push("/auth/login")
+      }
+    } catch (error) {
+      console.error("Registration failed:", error)
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Login failed!"
+      });
+    }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      })
+    }
+
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4">

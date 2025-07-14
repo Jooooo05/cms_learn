@@ -29,23 +29,13 @@ export default function LoginPage() {
 
       const data = await res.json()
       console.log("Login response:", data)
-      
-      if (!res.ok) {
-        console.log("Login response:", res)
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Login failed! " + (res.statusText) + " check your email and password!",
-        });
-
-        return;
-      }
 
       if (res.ok) {
         Swal.fire({
           title: "Login succesfully!",
           text: "Your account succesfully login!",
-          icon: "success"
+          icon: "success",
+          timer: 1500
         });
         
         router.push("/admin")

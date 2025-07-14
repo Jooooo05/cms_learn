@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
+import Swal from "sweetalert2"
+
 
 type Blog = {
   id: number
@@ -57,34 +59,48 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await fetch ("http://localhost:3001/auth/me", {
-          method: "GET",
-          credentials: "include",
-        })
-        //console.log("debuging auth check", res)
-        if (!res.ok) {
-          router.replace("/auth/login") // ⛔ jika belum login, langsung keluar
-        } else {
-          setLoading(false)
-        }
-        console.log("Auth response:", res)
-      } catch (error) {
-        console.error("Authentication check failed:", error)
-        // Redirect to login page if not authenticated
-        router.push("/auth/login")
-      } finally {
-        setLoading(false)
-      }
-    }
 
     checkAuth()
   }, [router])
 
-  const handleLogout = () => {
+  const checkAuth = async () => {
+    try {
+      const res = await fetch ("http://localhost:3001/auth/me", {
+        method: "GET",
+        credentials: "include",
+      })
+      //console.log("debuging auth check", res)
+      if (!res.ok) {
+        router.replace("/auth/login") // ⛔ jika belum login, langsung keluar
+      } else {
+        setLoading(false)
+      }
+      console.log("Auth response:", res)
+    } catch (error) {
+      console.error("Authentication check failed:", error)
+      // Redirect to login page if not authenticated
+      router.push("/auth/login")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleLogout = async () => {
     // Handle logout logic
-    console.log("Logout clicked")
+    // console.log("Logout clicked")
+    try {
+      await fetch ("http://localhost:3001/auth/logout", {
+        method: "get",
+        credentials: "include",
+      }).then((res) => {
+        if (res.ok) {
+          Swal.fire("SweetAlert2 is working!");
+        }
+        router.push("/auth/login") // Redirect to login page after logout
+      })
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   }
 
   const handleAddNew = () => {
@@ -128,7 +144,7 @@ export default function AdminDashboard() {
               onClick={handleLogout}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 text-black border border-black rounded-lg hover:bg-black hover:text-white transition-colors duration-200"
+              className="px-4 py-2 text-black border border-black rounded-lg hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
             >
               Logout
             </motion.button>
